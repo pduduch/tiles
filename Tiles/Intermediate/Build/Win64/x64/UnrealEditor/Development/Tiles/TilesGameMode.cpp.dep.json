@@ -1,0 +1,31 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\source\\tiles\\tilesgamemode.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\intermediate\\build\\win64\\x64\\tileseditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\tiles\\definitions.tiles.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\source\\tiles\\tilesgamemode.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\intermediate\\build\\win64\\unrealeditor\\inc\\tiles\\uht\\tilesgamemode.generated.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\source\\tiles\\tilesplayercontroller.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\intermediate\\build\\win64\\unrealeditor\\inc\\tiles\\uht\\tilesplayercontroller.generated.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\source\\tiles\\tilescharacter.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "c:\\users\\pietro\\documents\\unreal projects\\tiles\\tiles\\intermediate\\build\\win64\\unrealeditor\\inc\\tiles\\uht\\tilescharacter.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
