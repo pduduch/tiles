@@ -10,6 +10,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "PlayerMovementDelegate.h"
 
 ATilesCharacter::ATilesCharacter()
 {
@@ -43,9 +44,83 @@ ATilesCharacter::ATilesCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+
+	//Movement Delegates
+	UPlayerMovementDelegate::OnMoveForward.AddUObject(this, &ATilesCharacter::OnMovingForward);
+	UPlayerMovementDelegate::OnMoveBackward.AddUObject(this, &ATilesCharacter::OnMovingBackward);
+	UPlayerMovementDelegate::OnMoveRight.AddUObject(this, &ATilesCharacter::OnMovingRight);
+	UPlayerMovementDelegate::OnMoveLeft.AddUObject(this, &ATilesCharacter::OnMovingLeft);
 }
 
 void ATilesCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+
+	if (bIsMovingForward) {
+		FRotator Rotation = Controller->GetControlRotation();
+		FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
+		FVector Forward = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Forward);
+	}
+	else if (bIsMovingBackward)
+	{
+		FRotator Rotation = Controller->GetControlRotation();
+		FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
+		FVector Forward = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(-Forward);
+	}
+	else if (bIsMovingRight)
+	{
+		FRotator Rotation = Controller->GetControlRotation();
+		FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
+		FVector Right = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(Right);
+	}
+	else if (bIsMovingLeft)
+	{
+		FRotator Rotation = Controller->GetControlRotation();
+		FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
+		FVector Right = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(-Right);
+	}
+}
+
+void ATilesCharacter::OnMovingForward(bool updatedIsMovingForward)
+{
+	//TODO: Add check to verify if it's possible to move in the desired direction i.e. if there is something already right in front of the player.
+	//      If so, don't change the value for bIsMoving<...>. This should be done after implementing the collision events!
+	UE_LOG(LogTemp, Warning, TEXT("======= MOVING FORWARD SUCCESSFULLY ============"));
+	if (!bIsMovingBackward && !bIsMovingLeft && !bIsMovingRight)
+	{
+		bIsMovingForward = !bIsMovingForward;
+	}
+}
+
+void ATilesCharacter::OnMovingBackward(bool updatedIsMovingBackward)
+{
+	UE_LOG(LogTemp, Warning, TEXT("======= MOVING BACKWARD SUCCESSFULLY ============"));
+	if (!bIsMovingForward && !bIsMovingLeft && !bIsMovingRight)
+	{
+		bIsMovingBackward = !bIsMovingBackward;
+	}
+}
+
+void ATilesCharacter::OnMovingRight(bool updatedIsMovingRight)
+{
+	if (!bIsMovingForward && !bIsMovingBackward && !bIsMovingLeft)
+	{
+		bIsMovingRight = !bIsMovingRight;
+	}
+}
+
+void ATilesCharacter::OnMovingLeft(bool updatedIsMovingLeft)
+{
+	if (!bIsMovingForward && !bIsMovingBackward && !bIsMovingRight)
+	{
+		bIsMovingLeft = !bIsMovingLeft;
+	}
 }

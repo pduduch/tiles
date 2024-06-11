@@ -11,6 +11,7 @@
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
+#include "PlayerMovementDelegate.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -53,6 +54,13 @@ void ATilesPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Triggered, this, &ATilesPlayerController::OnTouchTriggered);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Completed, this, &ATilesPlayerController::OnTouchReleased);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Canceled, this, &ATilesPlayerController::OnTouchReleased);
+
+		// Setup keyboard input events
+		EnhancedInputComponent->BindAction(MoveForwardAction, ETriggerEvent::Triggered, this, &ATilesPlayerController::OnMoveForwardTriggered);
+		EnhancedInputComponent->BindAction(MoveBackwardAction, ETriggerEvent::Triggered, this, &ATilesPlayerController::OnMoveBackwardTriggered);
+		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &ATilesPlayerController::OnMoveRightTriggered);
+		EnhancedInputComponent->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &ATilesPlayerController::OnMoveLeftTriggered);
+
 	}
 	else
 	{
@@ -122,4 +130,35 @@ void ATilesPlayerController::OnTouchReleased()
 {
 	bIsTouch = false;
 	OnSetDestinationReleased();
+}
+
+void ATilesPlayerController::OnMoveForwardTriggered()
+{
+	ACharacter* ControlledCharacter = GetCharacter();
+	if (ControlledCharacter != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("WWWWWWWWWWWWWWWWWWWWWWWWWW"));
+
+		UPlayerMovementDelegate::OnMoveForward.Broadcast(true);
+
+		// TODO: MAKE DELEGATE SINGLETON!
+	}
+}
+
+void ATilesPlayerController::OnMoveBackwardTriggered()
+{
+	UE_LOG(LogTemp, Warning, TEXT("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"));
+	UPlayerMovementDelegate::OnMoveBackward.Broadcast(true);
+}
+
+void ATilesPlayerController::OnMoveRightTriggered()
+{
+	UE_LOG(LogTemp, Warning, TEXT("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"));
+	UPlayerMovementDelegate::OnMoveRight.Broadcast(true);
+}
+
+void ATilesPlayerController::OnMoveLeftTriggered()
+{
+	UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
+	UPlayerMovementDelegate::OnMoveLeft.Broadcast(true);
 }
